@@ -250,8 +250,11 @@ class Video extends Drawable {
 		@param onReady An optional callback signalling that video is initialized and began the video playback.
 	**/
 	public function loadFile( path : String, ?onReady : Void -> Void ) {
+		trace(1);
 		dispose();
+		trace(1);
 
+		trace(1);
 		#if (hl && hlvideo)
 		webm = hl.video.Webm.fromFile(path);
 		#elseif js
@@ -274,8 +277,11 @@ class Video extends Drawable {
 		onError("Video not supported on this platform");
 		return;
 		#end
+		trace(1);
 		start();
+		trace(1);
 		if( onReady != null ) onReady();
+		trace(1);
 	}
 
 	/**

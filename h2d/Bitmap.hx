@@ -79,6 +79,7 @@ class Bitmap extends Drawable {
 		if( tile == null ) tile = h2d.Tile.fromColor(0xFF00FF);
 		var ow = tile.width;
 		var oh = tile.height;
+
 		@:privateAccess {
 			tile.width = width != null ? width : ow * height / oh;
 			tile.height = height != null ? height : oh * width / ow;

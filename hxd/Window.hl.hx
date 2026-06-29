@@ -114,7 +114,15 @@ class Window {
 		this.windowHeight = window.height;
 		#elseif hldx
 		final dxFlags = if (!fixed) dx.Window.RESIZABLE else 0;
-		window = new dx.Window(title, width, height, dx.Window.CW_USEDEFAULT, dx.Window.CW_USEDEFAULT, dxFlags);
+		final monitors = dx.Window.getMonitors();
+		var cx = dx.Window.CW_USEDEFAULT;
+		var cy = dx.Window.CW_USEDEFAULT;
+		if (monitors.length > 0) {
+			final m = monitors[0];
+			cx = m.left + Std.int((m.right - m.left - width) * 0.5);
+			cy = m.top + Std.int((m.bottom - m.top - height) * 0.5);
+		}
+		window = new dx.Window(title, width, height, cx, cy, dxFlags);
 		#end
 		WINDOWS.push(this);
 		#if multidriver
